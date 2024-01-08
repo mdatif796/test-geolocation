@@ -7,7 +7,7 @@ function Home({ ipAddress, country }) {
   return (
     <div className={styles.container}>
       <h1>
-        Country name based on this {ipAddress} is {country.toString()}
+        Country details based on this {ipAddress} is {country}
       </h1>
     </div>
   );
@@ -38,8 +38,8 @@ async function getCountryFromIP(ipAddress) {
     let response = await fetch(`https://ipinfo.io/${ipAddress}/json`);
     console.log("response: ", response);
     response = await response.json();
-    console.log("response: ", response);
-    return response;
+    console.log("response: ", JSON.stringify(response));
+    return JSON.stringify(response);
   } catch (error) {
     return mockGetCountryFromIP(ipAddress);
   }
