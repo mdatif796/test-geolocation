@@ -35,9 +35,11 @@ async function getCountryFromIP(ipAddress) {
   // Parse the response and extract the country information
   // return response.json().country;
   try {
-    const response = await fetch(`https://ipinfo.io/${ipAddress}/json`);
+    let response = await fetch(`https://ipinfo.io/${ipAddress}/json`);
     console.log("response: ", response);
-    return response.json().country;
+    response = await response.json();
+    console.log("response: ", response);
+    return response.country;
   } catch (error) {
     return mockGetCountryFromIP(ipAddress);
   }
